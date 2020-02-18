@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title> - Hu&gt;&gt;Blog</title>
+    
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link href="https://hubertzz.github.io/an-old-hope.min.css" rel="stylesheet">
+    <link href="https://hubertzz.github.io/style.css" rel="stylesheet">
+    
+    <link rel="apple-touch-icon" href="https://hubertzz.github.io/apple-touch-icon.png">
+    <link rel="icon" href="https://hubertzz.github.io/favicon.ico">
+    
+    <meta name="generator" content="Hugo 0.64.0" />
+    
+    <link rel="alternate" type="application/atom+xml" href="https://hubertzz.github.io/index.xml" title="Hu&gt;&gt;Blog">
+    
+    
+    
+    <script>
+      function setTheme() {
+        const time = new Date();
+
+        const prev = localStorage.getItem('date');
+        const date = String(time.getMonth() + 1) + '.' + String(time.getDate());
+
+        const now = time.getTime();
+        let sunrise;
+        let sunset;
+
+        function setBodyClass() {
+          if (now > sunrise && now < sunset) return;
+          document.body.classList.add('dark');
+        }
+
+        if (date !== prev) {
+          fetch('https://api.ipgeolocation.io/astronomy?apiKey=5ed37d85103e4defa5df4c5298ed5215')
+            .then(res => res.json())
+            .then(data => {
+              sunrise = data.sunrise.split(':').map(Number);
+              sunset = data.sunset.split(':').map(Number);
+            })
+            .catch(() => {
+              sunrise = [7, 0];
+              sunset = [19, 0];
+            })
+            .finally(() => {
+              sunrise = time.setHours(sunrise[0], sunrise[1], 0);
+              sunset = time.setHours(sunset[0], sunset[1], 0);
+              setBodyClass();
+              localStorage.setItem('sunrise', sunrise);
+              localStorage.setItem('sunset', sunset);
+            });
+          localStorage.setItem('date', date);
+        } else {
+          sunrise = Number(localStorage.getItem('sunrise'));
+          sunset = Number(localStorage.getItem('sunset'));
+          setBodyClass();
+        }
+      }
+    </script>
+  </head>
+  <body class="list">
+    <script>
+      setTheme();
+    </script>
+    <header class="header">
+      <nav class="nav">
+        
+        <p class="logo"><a href="https://hubertzz.github.io/">Hu&gt;&gt;Blog</a></p>
+        
+        
+      </nav>
+    </header>
+    <main class="main">
+
+
+
+
+<header class="page-header">
+  <h1></h1>
+</header>
+
+
+
+
+
+<article class="post-entry">
+  <header class="entry-header">
+    <h2>建站闲话</h2>
+  </header>
+  <section class="entry-content">
+   <p>本想着搭一个博客是一件很简单的事情，却因为一个「懒」字，一直没有付诸于行动。之前的工作是区块链，程序上不少用到了 Go 语言，网上搜搜便发现了以 Go 编写名为 Hugo 的静态网站工具。Hugo 的主题大多是从 Hexo 移植过来的，一个又一个的主题让本人目不暇接，于是「完美主义」犯了（跪），找了两年主题，竟是没有真正开始用过 Hugo，更别提写出一篇所谓博客了。
+用来写这篇闲话的学生机（现在已经变成了工作机）本来装的就是 Windows 10（不过别说 OneDrive 是真的好用，唔，Windows 10 真香，完……），本人在工作上跟 Linux 打了交道以后，觉得 Windows 实在是太臃肿了，选了基于 Arch 的 Manjaro 作为替代系统。经过了虚拟机上面的几番捣鼓，终于某日下定决心实装到了这日常使用的机器上面，舒服！因为跟 Arch 一样，用的滚动更新，有一次竟然是滚「挂」了，虽然有惊无险修复好了，但是本人保证绝对不会再用 Pamac 更新 Manjaro 了（吓死宝宝了……）。
+虽然说不会用 Pamac 更新系统，但是安装软件倒很是方便。Hugo 就是直接用 Pamac 安装的，装好直接就可以在终端上面开始使用了。在逛 Github 的时候，偶然之间发现了 Paper 这个主题，甚是喜欢。既然主题选定，用 Hugo 开始做点什么也就提上日程了。参考了不少使用 Hugo 建站的博文，又不想看英文文档的本人，最后还是选择了 Hugo中文文档 开始了我的建站旅程……
+而这篇闲话（也就是个流水账），就算是一个开始吧！...</p>
+  </section>
+  <footer class="entry-footer">
+    <time>February 9, 2020</time>
+  </footer>
+  <a class="entry-link" href="https://hubertzz.github.io/post/first-post/"></a>
+</article>
+
+
+
+
+</main>
+<footer class="footer">
+  <span>&copy; 2020 <a href="https://hubertzz.github.io/">Hu&gt;&gt;Blog</a></span>
+  <span>&middot;</span>
+  <span>Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo️️</a>️</span>
+  <span>&middot;</span>
+  <span>Theme️ <a href="https://github.com/nanxiaobei/hugo-paper" rel="noopener" target="_blank">Paper</a></span>
+</footer>
+<script src="https://hubertzz.github.io/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>
+
